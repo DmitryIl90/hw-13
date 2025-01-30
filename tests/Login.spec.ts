@@ -58,9 +58,3 @@ test.describe('Login tests', async () => {
     expect(requestedOrder.status).toBe("OPEN");
   })
 })
-
-/*
-{
-  token: "efwef"
-}
- */
