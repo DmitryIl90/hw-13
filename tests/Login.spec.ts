@@ -1,55 +1,32 @@
 import { expect, test } from '@playwright/test'
-import { LoginDTO } from './DTO/LoginDTO'
+import { LoginDto } from './DTO/LoginDto'
 import { StatusCodes } from 'http-status-codes'
 import { OrderDto } from './DTO/OrderDto'
+import { ApiClient } from '../api/ApiClient'
 
 test.describe('Login tests', async () => {
   test('TL-12-1 Successful authorization', async ({ request }) => {
-    const response = await request.post(`https://backend.tallinn-learning.ee/login/student`, {
-      data: LoginDTO.createLoginWithCorrectData(),
-    })
-
-    console.log(await response.text())
-    expect(response.status()).toBe(StatusCodes.OK)
+    const apiClient = await ApiClient.getInstance(request);
+    expect(apiClient.jwt).not.toBeUndefined();
   })
 
   test('TL-12-2 Successful authorization and order creation', async ({ request }) => {
-    const responseLogin = await request.post(`https://backend.tallinn-learning.ee/login/student`, {
-      data: LoginDTO.createLoginWithCorrectData(),
-    })
-    expect(responseLogin.status()).toBe(StatusCodes.OK);
-    console.log(await responseLogin.text());
-
+    const apiClient = await ApiClient.getInstance(request);
     const responseCreateOrder = await request.post(`https://backend.tallinn-learning.ee/orders`, {
       data: OrderDto.generateRandomOrderDto(),
       headers: {
-        Authorization: "Bearer " + await responseLogin.text()
+        Authorization: "Bearer " + apiClient.jwt
       }
     })
     console.log(await responseCreateOrder.text());
     expect(responseCreateOrder.status()).toBe(StatusCodes.OK);
   })
 
-  test('TL-12-3 Successful authorization, order creation and order status', async ({ request }) => {
-    const responseLogin = await request.post(`https://backend.tallinn-learning.ee/login/student`, {
-      data: LoginDTO.createLoginWithCorrectData(),
-    })
-    expect(responseLogin.status()).toBe(StatusCodes.OK);
-
-    const responseCreateOrder = await request.post(`https://backend.tallinn-learning.ee/orders`, {
-      data: OrderDto.generateRandomOrderDto(),
+  test('TL-12-3 order status', async ({ request }) => {
+    const apiClient = await ApiClient.getInstance(request);
+    const responseOrderStatus = await request.get(`https://backend.tallinn-learning.ee/orders/${await apiClient.createOrderAndReturnOrderId()}`, {
       headers: {
-        Authorization: "Bearer " + await responseLogin.text()
-      }
-    })
-    expect(responseCreateOrder.status()).toBe(StatusCodes.OK);
-    const createdOrder = OrderDto.serializeResponse(await responseCreateOrder.json())
-    expect(createdOrder.id).toBeDefined();
-    expect(createdOrder.id).toBeGreaterThan(0);
-
-    const responseOrderStatus = await request.get(`https://backend.tallinn-learning.ee/orders/${createdOrder.id}`, {
-      headers: {
-        Authorization: "Bearer " + await responseLogin.text()
+        Authorization: "Bearer " + apiClient.jwt
       }
     })
     expect(responseOrderStatus.status()).toBe(StatusCodes.OK);

@@ -1,4 +1,4 @@
-export class LoginDTO {
+export class LoginDto {
   username: string
   password: string
 
@@ -7,7 +7,7 @@ export class LoginDTO {
     this.password = password
   }
 
-  static createLoginWithCorrectData(): LoginDTO {
-    return new LoginDTO(process.env.USERNAME || '', process.env.PASSWORD || '')
+  static createLoginWithCorrectData(): LoginDto {
+    return new LoginDto(process.env.USERNAME || '', process.env.PASSWORD || '')
   }
 }
