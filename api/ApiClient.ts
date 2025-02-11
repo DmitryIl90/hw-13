@@ -18,7 +18,7 @@ export class ApiClient {
   }
 
   public static async getInstance(request: APIRequestContext): Promise<ApiClient> {
-    if (!ApiClient.instance) {
+    if (ApiClient.instance === undefined) {
       ApiClient.instance = new ApiClient(request);
       await this.instance.requestJwt();
     }
@@ -57,5 +57,19 @@ export class ApiClient {
     console.log(responseBody)
 
     return responseBody.id
+  }
+
+  async deleteOrder(orderId: number): Promise<void> {
+    console.log('Delete order...')
+    const responseDeletion = await this.request.delete(`${serverURL}${orderPath}/${orderId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${this.jwt}`,
+      },
+    },
+  )
+    expect(responseDeletion.status()).toBe(StatusCodes.OK)
+    const responseBody = await responseDeletion.json()
+    expect(responseBody).toBe(true)
   }
 }

@@ -1,4 +1,4 @@
-name: Default
+name: Base CI pipeline
 
 on:
   push:
@@ -39,7 +39,15 @@ jobs:
           echo "Running TypeScript compiler to check for type issues..."
           npx tsc --noEmit
 
-      - name: Run Playwright API tests
+      - name: Run Playwright API tests (all tests)
         run: |
           echo "Running Playwright to execute API tests..."
-          npx playwright test    
+          npx playwright test
+
+      - name: Run Playwright ENV variables tests
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+        run: |
+          echo "Running Playwright to execute API tests..."
+          npx playwright test tests/Login.spec.ts
