@@ -40,7 +40,7 @@ test.describe('Login tests', async () => {
   test('TL-12-4 delete order', async ({ request }) => {
     const apiClient = await ApiClient.getInstance(request)
     const orderId = await apiClient.createOrderAndReturnOrderId()
-    const responseDelete = await apiClient.deleteOrder(orderId);
+    const responseDelete = await apiClient.deleteOrder(orderId)
     console.log(responseDelete)
   })
 })
