@@ -37,5 +37,4 @@ test.describe('User managment app tests', async () => {
 
     expect(deletedUser).toStrictEqual(createdUser)
   })
-
 })
