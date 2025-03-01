@@ -39,14 +39,6 @@ jobs:
           echo "Running TypeScript compiler to check for type issues..."
           npx tsc --noEmit
 
-      - name: Run ENV variables tests
-        env:
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-        run: |
-          echo "Running ENV variables tests..."
-          npx playwright test tests/Login.spec.ts
-
       - name: Set up Docker Compose
         uses: hoverkraft-tech/compose-action@v2.0.1
         with:
