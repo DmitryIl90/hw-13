@@ -48,7 +48,7 @@ jobs:
       - name: Run test for empty array scenario
         run: |
           echo "Running local API tests..."
-          npx playwright test tests/GetAllUsers.spec.ts
+          npx playwright test tests/EmptyArray.spec.ts
 
       - name: Run remaining tests
         run: |
