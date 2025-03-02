@@ -45,12 +45,7 @@ jobs:
           compose-file: ./docker-compose.yaml
           up-flags: -d
 
-      - name: Run test for empty array scenario
+      - name: Run Playwright tests
         run: |
           echo "Running local API tests..."
-          npx playwright test tests/GetAllUsers.spec.ts
-
-      - name: Run remaining tests
-        run: |
-          echo "Running rest API tests..."
-          npx playwright test tests/User.Api.spec.ts
+          npx playwright test tests/ApiLoop.spec.ts
