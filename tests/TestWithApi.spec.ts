@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { StatusCodes } from 'http-status-codes'
 import { OrderDto } from './DTO/OrderDto'
-import { ApiClient } from '../api/ApiClient'
+import { ApiClient } from './api/api-client.spec'
 
 test.describe('Tests with API client', async () => {
   test('Verify if username and login are valid with API client, response returns status code "OK" and correct jwt', async ({
