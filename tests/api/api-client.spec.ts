@@ -1,7 +1,7 @@
-import { LoginDto } from '../tests/DTO/LoginDto'
+import { LoginDto } from '../DTO/LoginDto'
 import { APIRequestContext, APIResponse } from 'playwright-core'
 import { StatusCodes } from 'http-status-codes'
-import { OrderDto } from '../tests/DTO/OrderDto'
+import { OrderDto } from '../DTO/OrderDto'
 
 const serverURL = 'https://backend.tallinn-learning.ee/'
 const loginPath = 'login/student'
