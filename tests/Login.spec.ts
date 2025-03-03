@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 import { LoginDto } from './DTO/LoginDto'
 import { StatusCodes } from 'http-status-codes'
 import { OrderDto } from './DTO/OrderDto'
-import { ApiClient } from '../api/ApiClient'
+import { ApiClient } from './api/api-client'
 
 test.describe('Login tests', async () => {
   test('TL-12-1 Successful authorization', async ({ request }) => {
