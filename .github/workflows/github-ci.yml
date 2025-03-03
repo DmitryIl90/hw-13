@@ -57,3 +57,4 @@ jobs:
         run: |
           echo "Running rest API tests..."
           npx playwright test tests/GetAllUsers.spec.ts test tests/User.Api.spec.ts test tests/GetOrder.spec.ts test tests/Login.spec.ts test tests/Post-order.spec.ts test tests/TestWithApi.spec.ts test tests/PostApiLoanCalcDecision.spec.ts test tests/ApiLoop.spec.ts
+
