@@ -51,8 +51,8 @@ test.describe('Login tests', async () => {
   })
 
   test('TL-12-4 Successful authorization, order creation, order status and delete', async ({
-                                                                                             request,
-                                                                                           }) => {
+    request,
+  }) => {
     const responseLogin = await request.post('https://backend.tallinn-learning.ee/login/student', {
       data: LoginDto.createLoginWithCorrectData(),
     })

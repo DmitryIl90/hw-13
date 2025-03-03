@@ -5,8 +5,8 @@ import { ApiClient } from '../api/ApiClient'
 
 test.describe('Tests with API client', async () => {
   test('Verify if username and login are valid with API client, response returns status code "OK" and correct jwt', async ({
-                                                                                                                             request,
-                                                                                                                           }) => {
+    request,
+  }) => {
     const apiClient = await ApiClient.getInstance(request)
     expect(/^eyJhb[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/.test(apiClient.jwt)).toBe(true)
   })

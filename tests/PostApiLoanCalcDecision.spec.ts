@@ -4,8 +4,8 @@ import { StatusCodes } from 'http-status-codes'
 import { LoanDto } from './DTO/LoanDto'
 
 test('Successful decision of loan with correct data and Low Risk should receive code 200', async ({
-                                                                                                    request,
-                                                                                                  }) => {
+  request,
+}) => {
   const response = await request.post(
     'https://backend.tallinn-learning.ee/api/loan-calc/decision',
     {
@@ -25,8 +25,8 @@ test('Successful decision of loan with correct data and Low Risk should receive 
 })
 
 test('Successful decision of loan with correct data and Medium Risk should receive code 200', async ({
-                                                                                                       request,
-                                                                                                     }) => {
+  request,
+}) => {
   console.log(LoanDto.generateValidMediumRisk())
   const response = await request.post(
     'https://backend.tallinn-learning.ee/api/loan-calc/decision',
@@ -47,8 +47,8 @@ test('Successful decision of loan with correct data and Medium Risk should recei
 })
 
 test('Successful decision of loan with correct data and High Risk should receive code 200', async ({
-                                                                                                     request,
-                                                                                                   }) => {
+  request,
+}) => {
   const response = await request.post(
     'https://backend.tallinn-learning.ee/api/loan-calc/decision',
     {
@@ -68,8 +68,8 @@ test('Successful decision of loan with correct data and High Risk should receive
 })
 
 test('Unsuccessful decision of loan with correct data and Very High Risk should receive code 200', async ({
-                                                                                                            request,
-                                                                                                          }) => {
+  request,
+}) => {
   const response = await request.post(
     'https://backend.tallinn-learning.ee/api/loan-calc/decision',
     {
@@ -89,8 +89,8 @@ test('Unsuccessful decision of loan with correct data and Very High Risk should 
 })
 
 test('Unsuccessful decision of loan for Young Customer and Very High Risk should receive code 200', async ({
-                                                                                                             request,
-                                                                                                           }) => {
+  request,
+}) => {
   const response = await request.post(
     'https://backend.tallinn-learning.ee/api/loan-calc/decision',
     {
@@ -110,8 +110,8 @@ test('Unsuccessful decision of loan for Young Customer and Very High Risk should
 })
 
 test('Unsuccessful decision of loan with empty data should receive code 400', async ({
-                                                                                       request,
-                                                                                     }) => {
+  request,
+}) => {
   const response = await request.post(
     'https://backend.tallinn-learning.ee/api/loan-calc/decision',
     {
